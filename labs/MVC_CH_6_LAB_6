@@ -1,0 +1,174 @@
+
+# Name : Emeka Mk, pume
+
+## File : C#_MVC_6_LAB_6
+
+### Date : March 12, 2020
+
+//Program.cs
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+
+namespace WorkingWithVisualStudio
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateWebHostBuilder(args).Build().Run();
+        }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>();
+    }
+}
+
+//StartUp.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace WorkingWithVisualStudio
+{
+    public class Startup
+    {
+        // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            app.UseMvcWithDefaultRoute();
+            //home/index is the default route.
+        }
+    }
+}
+
+//WorkingWithVisualStudio.csproj
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Controller\" />
+    <Folder Include="Views\Home\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+  </ItemGroup>
+
+</Project>
+
+//Product.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace WorkingWithVisualStudio.Models
+{
+    public class Product
+    {
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+    }
+}
+
+//HomeController.cs
+using Microsoft.AspNetCore.Mvc;
+using WorkingWithVisualStudio.Models;
+namespace WorkingWithVisualStudio.Controllers
+{
+    public class HomeController : Controller
+    {
+        public IActionResult Index()
+        => View(SimpleRepository.SharedRepository.Products);
+    }
+}
+//Index.cshtml
+@model IEnumerable<WorkingWithVisualStudio.Models.Product>
+@{ Layout = null; }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Working with Visual Studio</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr><td>Name</td><td>Price</td></tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.Name</td>
+                    <td>@p.Price</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
+//fancy index.cshtml
+@model IEnumerable<WorkingWithVisualStudio.Models.Product>
+@{ Layout = null; }
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Working with Visual Studio</title>
+    <style>
+        #header {
+            margin: 12px;
+            border: 2px #006600 inset;
+             padding: 18px;
+             color: #ccffcc;
+             background-color: aqua;
+        }
+        </style>
+</head>
+<body>
+    <h3>Products</h3>
+    <table>
+        <h2 id="header">Emeka Products</h2>
+        <thead>
+            <tr><td>Name</td><td>Price</td></tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.Name</td>
+                    <td>@($"{p.Price:C2}")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

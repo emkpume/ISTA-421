@@ -1,0 +1,99 @@
+
+*****************************************************************************************
+
+Name : Emeka Mkpume
+
+File : MVC_CH_8_HW_8
+
+Date : April 01, 2020.
+
+1. What is the purpose of the Startup class in an MVC application?
+
+A service is a reusable component that provides app functionality. Services are 
+registered in ConfigureServices and consumed across the app via dependency injection
+(DI) or ApplicationServices. Includes a Configure method to create the app's request
+processing pipeline.
+
+2. What is the purpose of the ConfigureServices() method?
+
+The primary purpose of the ConfigureServices method is as a place to register 
+implementation types for services that are needed by the application. It is also used to
+configure any options related to those services.
+
+3. What is the purpose of the AddMvc() method?
+
+It's essentially a shortcut to an MVC specific middleware. Second, AddMvc is the way your
+application says that you want the MVC services available to the system 
+(needed in order for UseMvc ) to work correctly.
+
+4. What does the book describe as “the heart of an MVC application?” Why do you think that
+this “heart” is the starting point of all applications?
+
+All projects start with the domain model, which is the heart of an MVC application. 
+Since this is an e-commerce application, the most obvious model I need is for a product. 
+
+5. What is the purpose of the Queryable<T> interface? What does it allow you to do?
+
+Queries can perform many different functions in a database. Their most common function 
+is to retrieve specific data from the tables. The data you want to see is usually spread
+across several tables, and queries allow you to view it in a single datasheet.
+
+6. How does the book describe loosely coupled components? Why is this an important
+principle of software design?
+
+MVC emphasizes the use of loosely coupled components, which means you can make a change
+in one part of the application without having to make corresponding changes elsewhere. 
+This approach categorizes parts of the application as services, which provide features 
+that other parts of the application use.
+
+7. What, specifically, does the AddTransient() method do?
+
+AddTransient() - This method creates a Transient service.
+The AddTransient method specifies that a new FakeProductRepository object should be 
+created each time the IProductRepository interface is needed.
+
+8. Describe dependency injection? What is the dependency? What does it mean to say that
+it is injected?
+
+dependency injection is a technique whereby one object supplies the dependencies of another
+object. A "dependency" is an object that can be used, for example as a service.
+The "injection" refers to the passing of a dependency (a service) into the object 
+(a client) that would use it.
+
+9. What is the purpose of a shared layout?
+
+The Layouts and sections in ASP.NET MVC core help us to maintain a consistent look across 
+all the pages or views of our application.
+
+10. What is a database context class? What purpose does it serve?
+
+It represent a session with the underlying database using which you can perform CRUD 
+(Create, Read, Update, Delete) operations. ... The context class is used to query or 
+save data to the database.
+
+11. What function does the EnsurePopulated() method perform?
+
+The static EnsurePopulated method receives an IApplicationBuilder argument, which is the
+interface used in the Configure method of the Startup class to register middleware components 
+to handle HTTP requests, and this is where I will ensure that the database has content.
+The EnsurePopulated method obtains an ApplicationDbContext object through the
+IApplicationBuilder interface and calls the Database.
+
+12. What is a ViewModel? How does a ViewModel differ from an ordinary model?
+
+A view model represents the data that you want to display on your view/page, whether it
+be used for static text or for input values (like textboxes and dropdown.
+
+13. Describe in your own words a composable URL. Note that it is not an answer to this
+question to say that it is one that makes sense to a user.
+
+It is a URL that is easy to understand.
+
+14. What is a partial view? Illustrate the concept of a partial view with an example 
+other than the one used in the book.
+
+A partial view is like as user control in ASP.NET Web forms that is used for code 
+re-usability. Partial views helps us to reduce code duplication. Hence partial views are
+reusable views like as Header.
+
+*****************************************************************************************

@@ -1,0 +1,108 @@
+
+# *Emeka Mkpume*
+
+## *ASP.NET_MVC_HW_1
+
+### *February 26, 2020*
+
+1. What year was ASP.NET introduced?
+
+2002
+
+2. Briefly describe ASP.NET Web Forms.
+
+A set of UI components (pages, buttons, etc) plus a stateful, object-oriented GUI
+programming model.
+With Web Forms, Microsoft attempted to hide both Hypertext Transfer Protocol (HTTP), with its intrinsic
+statelessness, and Hypertext Markup Language (HTML), which at the time was unfamiliar to many
+developers, by modeling the user interface (UI) as a hierarchy of server-side control objects
+
+3. Briefly describe ASP.NET.
+
+A way to host .NET applications in IIS(microsoft web server product), letting you 
+interact with HTTP requests and responses. 
+  
+4. Briefly describe .NET.
+
+A multilanguage-managed code platform (brand-new at the time-a landmark in its own right)
+
+5. What is Representatiooinal State Transfer (REST)? This will take some 
+independent research.
+
+Representational state transfer is a software architectural style that defines a set of
+constraints to be used for creating Web services.
+REST, or REpresentational State Transfer, is an architectural style for providing standards 
+between computer systems on the web, making it easier for systems to communicate with each other.
+
+6. What is Agile Development? This will take some independent research.
+
+Agile is the ability to create and respond to change. It is a way of dealing with,
+and ultimately succeeding in, an uncertain and turbulent environment.
+Agile software development is more than frameworks such as Scrum, Extreme Programming or 
+Feature-Driven Development (FDD).
+
+7. What is unit testing?
+
+UNIT TESTING is a type of software testing where individual units or components of a software
+are tested. The purpose is to validate that each unit of the software code performs as expected. 
+Unit Testing is done during the development (coding phase) of an application by the developers.
+
+8. What year was ASP.NET MVC introduced?
+
+In 2015, Microsoft announced a new direction for ASP.NET and the MVC Framework, which would
+eventually produce ASP.NET Core MVC, the topic of this book.
+ASP.NET Core is built on .NET Core, which is a cross-platform version of the .NET Framework without
+the Windows-specific application programming interfaces (APIs). Windows is still a dominant operating
+system, but web applications are increasingly hosted in small and simple containers in cloud platforms,
+and by embracing a cross-platform approach, Microsoft has extended the reach of .NET, made it possible
+to deploy ASP.NET Core applications to a broader set of hosting environments, and, as a bonus, made it
+possible for developers to create ASP.NET Core web applications on Linux and macOS
+
+9. Describe URL routing. As part of your answer, discuss the concept of “clean URLs.”
+
+URL routing allows you to configure an application to accept request URLs that do not map to physical
+files. A request URL is simply the URL a user enters into their browser to find a page on your web site
+
+10. What is the relationship between Microsoft’s .NET platform and ASP.NET MVC?
+
+In a nutshell, the . NET Framework is a software framework developed by Microsoft to create, run and 
+deploy desktop applications and server based applications, whereas ASP.NET is the extension of the ASP
+which is part of the . NET Framework that simplifies the structure and creation of web applications.
+
+11. Chapter 1 does not discuss the MVC pattern specifically, and in a sense this 
+entire course is an extended
+examination of the MVC pattern. Using an independent resource (such as Wikipedia)
+briefly state the responsibility of (a) the model, (b) the controller, and (c) the view.
+
+Model–view–controller (usually known as MVC) is a software design pattern[1] commonly used for
+developing user interfaces which divides the related program logic into three interconnected elements.
+This is done to separate internal representations of information from the ways information is 
+presented to and accepted from the user.This kind of pattern is used for designing the layout of the page.
+
+                               MODEL
+                      updates
+                                        manipulates
+                VIEW                         CONTROLLER
+
+
+
+                  sees                        uses
+
+                             USER
+
+Model
+The central component of the pattern. It is the application's dynamic data structure, independent of 
+the user interface. It directly manages the data, logic and rules of the application.
+The model is responsible for managing the data of the application. It receives user input from the controller.
+View
+Any representation of information such as a chart, diagram or table. Multiple views of the same information 
+are possible, such as a bar chart for management and a tabular view for accountants.
+The view means presentation of the model in a particular format.
+Controller
+Accepts input and converts it to commands for the model or view
+The controller responds to the user input and performs interactions on the data model objects.
+
+note:
+ASP.NET Core MVC is a web application development framework from Microsoft that combines the
+effectiveness and tidiness of model-view-controller (MVC) architecture, ideas and techniques
+from agile development, and the best parts of the .NET platform

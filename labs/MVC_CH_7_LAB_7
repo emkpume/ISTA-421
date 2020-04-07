@@ -1,0 +1,199 @@
+
+*********************************************************************************************
+# Name : Emeka Mkpume
+
+## File : MVC_CH_7_LAB_7
+
+### Date : March 25, 2020
+
+//Program.cs
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+
+namespace WorkingWithVisualStudio
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            CreateWebHostBuilder(args).Build().Run();
+        }
+
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseStartup<Startup>();
+    }
+}
+
+//Startup.cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+namespace WorkingWithVisualStudio
+{
+    public class Startup
+    {
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc();
+        }
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            app.UseDeveloperExceptionPage();
+            app.UseStaticFiles();
+            app.UseMvcWithDefaultRoute();
+        }
+    }
+}
+//HomeControllers.cs
+using Microsoft.AspNetCore.Mvc;
+using WorkingWithVisualStudio.Models;
+using System.Linq;
+namespace WorkingWithVisualStudio.Controllers
+{
+    public class HomeController : Controller
+    {
+        SimpleRepository Repository = SimpleRepository.SharedRepository;
+        public IActionResult Index() => View(Repository.Products
+        .Where(p => p?.Price < 50));
+        [HttpGet]
+        public IActionResult AddProduct() => View(new Product());
+        [HttpPost]
+        public IActionResult AddProduct(Product p)
+        {
+            Repository.AddProduct(p);
+            return RedirectToAction("Index");
+        }
+    }
+}
+//product.cs
+
+
+namespace WorkingWithVisualStudio.Models
+{
+    public class Product
+    {
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+    }
+}
+//SimpleRepository.cs
+using System.Collections.Generic;
+
+namespace WorkingWithVisualStudio.Models
+{
+    public class SimpleRepository
+    {
+        private static SimpleRepository sharedRepository = new SimpleRepository();
+        private Dictionary<string, Product> products
+        = new Dictionary<string, Product>();
+        public static SimpleRepository SharedRepository => sharedRepository;
+
+        public SimpleRepository()
+        {
+            var initialItems = new[] {
+            new Product { Name = "Kayak", Price = 275M },
+            new Product { Name = "Lifejacket", Price = 48.95M },
+            new Product { Name = "Soccer ball", Price = 19.50M },
+            new Product { Name = "Corner flag", Price = 34.95M }
+            };
+            foreach (var p in initialItems)
+            {
+                AddProduct(p);
+            }
+            products.Add("Error", null);
+        }
+        public IEnumerable<Product> Products => products.Values;
+        public void AddProduct(Product p) => products.Add(p.Name, p);
+    }
+}
+//_ViewImports.cshtml
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+//AddProducts.cshtml
+@model WorkingWithVisualStudio.Models.Product
+@{ Layout = null; }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Working with Visual Studio</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body class="p-2">
+    <h3 class="text-center">Create Product</h3>
+    <form asp-action="AddProduct" method="post">
+        <div class="form-group">
+            <label asp-for="Name">Name:</label>
+            <input asp-for="Name" class="form-control" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Price">Price:</label>
+            <input asp-for="Price" class="form-control" />
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary">Add</button><a asp-action="Index" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</body>
+</html>
+//Index.cshtml
+@model IEnumerable<WorkingWithVisualStudio.Models.Product>
+@{ Layout = null; }
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Working with Visual Studio</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/second.css" />
+    <script src="js/third.js"></script>
+    <script src="js/fourth.js"></script>
+    <style>
+        #header {
+            margin: 12px;
+            border: 2px #006600 inset;
+            padding: 18px;
+            color: #b6ff00;
+            background-color: mediumpurple
+        }
+    </style>
+</head>
+<body class="p-1">
+    <h3 class="text-center">Products</h3>
+    <table class="table table-bordered table-striped">
+
+        <h2 id="header">My Products</h2>
+        <h3>Products</h3>
+        <p>Request Time: @DateTime.Now.ToString("HH:mm:ss")</p>
+        <thead>
+            <tr><td>Name</td><td>Price</td></tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.Name</td>
+                    <td>@($"{p.Price:C2}")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="text-center">
+        <a class="btn btn-primary" asp-action="AddProduct">
+            Add New Product
+        </a>
+    </div>
+</body>
+</html>

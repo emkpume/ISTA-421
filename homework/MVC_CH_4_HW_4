@@ -1,0 +1,77 @@
+# Name : Emeka Mkpume
+
+## File : MVC_CH_4_HW_4
+
+### Date : March 5, 2020
+
+1. Using automatic properties is a shortcut that avoids several explicit steps. List the
+steps that the use of automatic properties avoids.
+
+
+2. Using the object initializer syntax is a shortcut that avoids several explicit steps.
+List the steps that the use of object initializers avoids.
+3. What is the purpose of creating extension methods?
+
+- Extension methods enable you to "add" methods to existing types without creating a new 
+derived type, recompiling, or otherwise modifying the original type. Extension methods 
+are a special kind of static method, but they are called as if they were instance methods
+on the extended type.
+
+4. What is the one feature of extension methods that will always allow you to identify a
+method as an extension method?
+
+For client code written in C#, F# and Visual Basic, there is no apparent difference between
+calling an extension method and the methods that are actually defined in a type.
+The most common extension methods are the LINQ standard query operators that add query 
+functionality to the existing System.Collections.IEnumerable and 
+System.Collections.Generic.IEnumerable<T> types.
+ 
+5. How do you create an extension method that filters the results returned by the method
+on a user specified criterion?
+
+The yield keyword
+
+6. Explain the syntax of a lambda expression. The term “lambda expression” originates in
+the lambda calculus developed by the mathematician Alonzo Church in the 1930’s. There is
+a class of programming languages that are based on the fundamental ideas of lambda calculus.
+
+Following are the important characteristics of a lambda expression.
+(a).Optional type declaration − No need to declare the type of a parameter. The compiler can 
+inference the same from the value of the parameter.
+(b).Optional parenthesis around parameter − No need to declare a single parameter in parenthesis.
+For multiple parameters, parentheses are required.
+(c).Optional curly braces − No need to use curly braces in expression body if the body contains
+a single statement.
+(d).Optional return keyword − The compiler automatically returns the value if the body has a single
+expression to return the value. Curly braces are required to indicate that expression returns a value.
+
+7. This will require some outside research. What is the distinction between an anonmously 
+typed variable and a dynamically typed variable?
+
+anonymous types refers to, well, whether the types have names or not. The dynamic keyword in 
+C# 4.0 means that this variable, parameter, method, field, property ... whatever is dynamically 
+typed, i.e. that its type will be checked at runtime. Everything that is not typed as dynamic is
+statically typed.
+
+8. You are having a discussion about C# with a friend of yours that uses another language. 
+You are tellig him about C#’s LINQ library. How would you describe to him the difference 
+between LINQ’s SQL-like notation and LINQ’s dot notation? 
+
+LINQ is a SQL-like syntax for querying data in classes. You use the lambda syntax
+
+9. What, exactly, does the await keyword do?
+
+The await operator is applied to a task in an asynchronous method to suspend the execution of the 
+method until the awaited task completes. The task represents ongoing work. The asynchronous method
+in which await is used must be modified by the async keyword.
+
+10. What is the connection between await and the async keywords?
+
+If you specify that a method is an async method by using an Async or async modifier, you enable the
+following two capabilities.
+The marked async method can use Await or await to designate suspension points. The await operator 
+tells the compiler that the async method can't continue past that point until the awaited asynchronous 
+process is complete. In the meantime, control returns to the caller of the async method.
+The suspension of an async method at an await expression doesn't constitute an exit from the method,
+and finally blocks don’t run.
+The marked async method can itself be awaited by methods that call it.

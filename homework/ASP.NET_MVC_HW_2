@@ -1,0 +1,68 @@
+
+
+# *Emeka Mkpume*
+
+## *ASP.NET_MVC_HW_2
+
+### *February 27 2020*
+
+1. Describe what a controller does in the MVC design pattern.
+
+In the MVC pattern, incoming requests are handled by controllers. In ASP.NET Core MVC,
+controllers are just C# classes (usually inheriting from the Microsoft.AspNetCore.Mvc.
+Controller class, which is the built-in MVC controller base class). 
+
+2. What is the ASP.NET MVC convention in naming controllers?
+What does HomeController.cs do?
+
+Each public method in a controller is known as an action method, meaning you can invoke 
+it from the Web via some URL to perform an action. The MVC convention is to put controllers
+in the Controllers folder, which Visual Studio created when it set up the project.
+
+3. What is the name of the routing configuration file? 
+Where is it located?
+
+4. What is Razor? How does Razor treat an expression beginning with the at symbol (@)? 
+
+Razor is the view engine responsible for incorporating data into HTML documents.
+The ability to dynamically generate content is essential to being able to write a web 
+application. Razor provides features that make it easy to work with the rest of the 
+ASP.NET Core MVC using C# statements.
+
+5. How do View methods work?This method creates a ViewResult object for the default view
+associated with the action method, such that calling View() in a method called MyAction 
+will render a view called MyAction.cshtml. No model data is used.
+
+6. What is the purpose of MVC models?
+
+The actual purpose of MVC is to separate your views from your controller and model. 
+In other words, it is a design pattern is a structure for keeping display and data 
+separate to allow each to change without affecting the other.
+
+7. What is a strongly typed view and why do we use strongly typed views?
+
+There are three ways to pass information from a controller to a view in ASP.NET MVC 3:
+(a).As a strongly typed model object.
+(b).As a dynamic type (using @model dynamic)
+(c).Using the ViewBag
+Strongly typed views are used for rendering specific types of model objects, instead
+of using the general ViewData structure. By specifying the type of data, you get access 
+to IntelliSense for the model class.
+
+8. What is the purpose of setting a start page URL?
+9. Describe the differences between HTTP GET and HTTP POST.
+
+The GET and POST method are used for sending the data to the server, and the main 
+difference between them is that GET method append the data to the URI defined in the 
+form's action attribute. Conversely, POST method attaches data to the requested body.
+
+10. Describe the two approaches to validation in web applications.
+11. What is the role of Cascading Style Sheets (CSS) in web development?dx
+
+                        **************note:*********************
+MVC. Stands for "Model-View-Controller." MVC is an application design model comprised
+of three interconnected parts. ... The MVC model or "pattern" is commonly used for 
+developing modern user interfaces. It is provides the fundamental pieces for designing
+a programs for desktop or mobile, as well as web applications.
+                       *****************************************
+					   

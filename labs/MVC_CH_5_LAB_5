@@ -1,0 +1,219 @@
+
+# Name : Emeka Mk, pume
+
+## File : C#_MVC_5_LAB_5
+
+### Date : March 11, 2020
+
+//_ViewStart.cshtml
+
+@{
+    Layout = "_BasicLayout";
+}
+
+//_BasicLayout.cshtml
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style>
+        steamboat {
+            display: block;
+            color: purple;
+            background-color: limegreen;
+            font-family: monospace;
+        }
+        body{
+            background-color: darkgray;
+        }
+        #mainDiv {
+            padding: 20px;
+            border: solid medium black;
+            background-color: #FFFFFF;
+            font-size: 20pt;
+            margin: 12px;
+        }
+        </style>
+</head>
+<body>
+        <h1>Product Information</h1>
+        <div id="mainDiv">
+            @RenderBody()
+        </div>
+</body>
+</html>
+
+
+
+//_ViewImport.cshtml
+
+@using Razor.Model
+
+@{ 
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="ViewPort" content="width=device-width" />
+    <title>Index</title>
+    </head>
+
+<body>
+    @Model.Name
+    </body>
+</html>
+
+//startup.cshtml
+
+
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Razor
+{
+    public class Startup
+    {
+        // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            // app.Run(async (context) =>
+            //{
+            //  await context.Response.WriteAsync("Hello World!");
+            //});
+            app.UseMvcWithDefaultRoute();
+        }
+    }
+}
+
+//Index.cshtml
+
+@model Product
+@{
+    ViewBag.Title = "Product Name";
+}
+<div data-productid="@Model.ProductID"
+     data-stocklevel="@ViewBag.StockLevel">
+    data-potato="False">
+    <p>Product Name: @Model.Name</p>
+    <p>Product Price: @($"{Model.Price:C2}")</p>
+    <p>
+    {
+        Stock Level:
+        @if (ViewBag.StockLevel == 0)
+        {
+            @:Out of Stock
+            <h5>Out of Stock</h5>
+        }
+        else if (ViewBag.StockLevel > 0 && ViewBag.StockLevel <= 3)
+        {
+            <b>Low Stock (@ViewBag.StockLevel)</b>
+        }
+        else
+        {
+            @: @ViewBag.StockLevel in Stock
+            <p>@ViewBag.StockLevel in Stock</p>
+        }
+    }
+    </p>
+
+       <p>Stock Level: @ViewBag.StockLevel</p>
+        <steamboat>My Steamboat</steamboat>
+        </div>
+
+//product.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Razor.Model
+{
+    public class Product
+    {
+        public int ProductID { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public decimal Price { get; set; }
+        public string Category { set; get; }
+    }
+}
+
+//HomeController.cs
+
+
+using Microsoft.AspNetCore.Mvc;
+using Razor.Model;
+
+namespace Razor.Controllers
+{
+    public class HomeController : Controller
+    {
+        //  public ViewResult Index()
+        // {
+        //  Product myProduct = new Product
+        //  {
+        //    ProductID = 1,
+        //   Name = "Kayak",
+        //   Description = "A boat for one person",
+        //   Category = "Watersports",
+        //   Price = 275M
+        // };
+        //  ViewBag.Wife = "peacecolo or mummy ephraim";
+        //  ViewBag.Title = "My First Web Page";
+        //  ViewBag.StockLevel = 0;
+        //  return View(myProduct);
+        //  }
+        // }
+        //}
+        public ViewResult Index()
+        {
+            Product[] array = {
+                         new Product {Name = "Kayak", Price = 275M},
+                         new Product {Name = "Lifejacket", Price = 48.95M},
+                         new Product {Name = "Soccer ball", Price = 19.50M},
+                        new Product {Name = "Corner flag", Price = 34.95M}
+                            };
+            return View(array);
+        }
+
+    }
+}
+
+//Razor.csproj
+
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Shared\" />
+  </ItemGroup>
+
+</Project>
+
+*********************************************************************************************************

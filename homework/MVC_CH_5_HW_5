@@ -1,0 +1,54 @@
+
+# Name : Emeka Mk, pume
+
+## File : C#_MVC_5_HW_5
+
+### Date : March 11, 2020
+
+1. What is a view engine?
+
+In an ASP.NET Core MVC application, a component called the view engine is used to 
+produce the content sent to clients. The default view engine is called Razor, and 
+it processes annotated HTML files for instructions that insert dynamic content into
+the output sent to the browser.
+
+2. What is Razor?
+
+Razor is the view engine responsible for incorporating data into HTML documents.
+
+3. What do views do? List two specific things in your answer to this question.
+
+The ability to dynamically generate content is essential to being able to write
+a web application. Razor provides features that make it easy to work with the
+rest of the ASP.NET Core MVC using C# statements.
+
+4. How does Razor respond when it encounters statements that begin with the at
+character (@)? Be specific.
+
+The @ character starts inline expressions, single statement blocks, and multi-statement blocks:
+You add code to a page using the @ character.
+
+5. How does Razor respond when it encounters statements that begin with the at 
+character followed by the colon (@:)? Be specific.
+6. Describe how you implement a standard formatting for all pages in an ASP.NET application.
+7. What is the difference in using Razor to interpolate data values as stand-alone HTML 
+elements and as attributes to HTML elements. What is the similarity?
+8. What is a view start file and where is it located?
+9. What is a Razor code block? What is the syntax of a Razor code block?
+
+ASP.NET Razor Code Blocks. Code block is used to enclose C# code statements. It starts with
+ @ (at) character and is enclosed by {} (curly braces). Unlike expressions, C# code inside code
+ blocks is not rendered. ... HTML within a code block will be rendered as HTML.
+ 
+10. Describe the different roles of action methods and views.
+11. Describe the use of the @using statement. Give an example of how you would use it.
+
+The objects specified within the using block must implement the IDisposable interface. 
+The framework invokes the Dispose method of objects specified within the "using" 
+statement when the block is exited.
+using (var font1 = new Font("Arial", 10.0f)) 
+{
+    byte charset = font1.GdiCharSet;
+}
+
+*********************************************************************************************************
